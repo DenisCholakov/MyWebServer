@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	<OutputType>Exe</OutputType>
+	<TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+	
+  <ItemGroup>
+	<Content Include="Views\**\*.*">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+  </ItemGroup>
+
+	<ItemGroup>
+		<Content Include="wwwroot\**\*.*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+	
+  <ItemGroup>
+	<None Remove="Views\Animals\Bunnies.cshtml" />
+	<None Remove="Views\Animals\Cats.cshtml" />
+	<None Remove="Views\Animals\Wild\Turtles.cshtml" />
+	<None Remove="Views\Cats\All.cshtml" />
+	<None Remove="Views\Cats\Create.cshtml" />
+	<None Remove="Views\Dogs\Create.cshtml" />
+	<None Remove="Views\Home\StaticFiles.cshtml" />
+	<None Remove="Views\Layout.cshtml" />
+	<None Remove="wwwroot\favicon.ico" />
+	<None Remove="wwwroot\img\cat.jpg" />
+  </ItemGroup>
+
+</Project>
