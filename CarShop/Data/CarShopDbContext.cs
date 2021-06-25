@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarShop.Data
 {
-    class CarShopDbContext : DbContext
+    public class CarShopDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
 

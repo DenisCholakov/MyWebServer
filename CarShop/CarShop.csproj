@@ -5,11 +5,6 @@
 	<TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-	<Folder Include="Controllers\" />
-	<Folder Include="Views\" />
-  </ItemGroup>
-
 	<ItemGroup>
 		<Content Include="Views\**\*.*">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -20,6 +15,10 @@
 		<Content Include="wwwroot\**\*.*">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Views\Shared\_Error.cshtml" />
 	</ItemGroup>
 
 	<ItemGroup>

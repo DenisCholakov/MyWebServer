@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 using MyWebServer.Server.Http;
 using MyWebServer.Server.Identity;
@@ -73,11 +74,22 @@ namespace MyWebServer.Server.Controllers
         protected ActionResult Redirect(string location)
             => new RedirectResult(this.Response, location);
 
+        protected ActionResult BadRequest()
+            => new BadRequestResult(this.Response);
+
+        protected ActionResult Unauthorized()
+            => new UnauthorizedRezult(this.Response);
+
         protected ActionResult View([CallerMemberName] string viewName = "")
             => this.GetViewResult(viewName, null);
 
         protected ActionResult View(object model, [CallerMemberName] string viewName = "")
             => this.GetViewResult(viewName, model);
+
+        protected ActionResult ErrorView(string error)
+            => this.ErrorView(new[] { error });
+        protected ActionResult ErrorView(IEnumerable<string> errors)
+            => this.GetViewResult("Shared/_Error", errors);
 
         private ActionResult GetViewResult(string viewName, object model)
             => new ViewResult(this.Response, this.ViewEngine, viewName, this.GetType().GetControllerName(), model, this.User.Id);

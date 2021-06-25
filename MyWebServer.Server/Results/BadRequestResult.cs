@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace MyWebServer.Server.Results
 {
-    public class BadRequestResult : HttpResponse
+    public class BadRequestResult : ActionResult
     {
-        public BadRequestResult() 
-            : base(HttpStatusCode.BadRequest)
-        {
-        }
+        public BadRequestResult(HttpResponse response)
+            : base(response)
+            => this.StatusCode = HttpStatusCode.BadRequest;
     }
 }

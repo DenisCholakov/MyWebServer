@@ -40,7 +40,7 @@ namespace MyWebServer.Server.Results
 
             var viewContent = File.ReadAllText(viewPath);
 
-            var layoutPath = Path.GetFullPath("./Views/Layout.cshtml");
+            var layoutPath = FindLayoutPath();
 
             if (File.Exists(layoutPath))
             {
@@ -48,12 +48,35 @@ namespace MyWebServer.Server.Results
                 viewContent = layoutContent.Replace("@RenderBody()", viewContent);
             }
 
-            if (model != null)
-            {
-                viewContent = viewEngine.RenderHtml(viewContent, model, userId);
-            }
+
+            viewContent = viewEngine.RenderHtml(viewContent, model, userId);
+
 
             this.SetContent(viewContent, HttpContentType.Html);
+        }
+
+        private static string FindLayoutPath()
+        {
+            var ViewFileExtensions = new[] { "html", "cshtml" };
+
+            foreach (var fileExtenxion in ViewFileExtensions)
+            {
+                string layoutPath = Path.GetFullPath($"Views/Layout.{fileExtenxion}");
+
+                if (File.Exists(layoutPath))
+                {
+                    return layoutPath;
+                }
+
+                layoutPath = Path.GetFullPath($"Views/Shared/_Layout.{fileExtenxion}");
+
+                if (File.Exists(layoutPath))
+                {
+                    return layoutPath;
+                }
+            }
+
+            return null;
         }
 
         private void PrepareMissingViewError(string viewPath)

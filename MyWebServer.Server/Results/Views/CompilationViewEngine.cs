@@ -47,7 +47,7 @@ namespace ViewNamespace
     using System.Text;
     using System.Linq;
     using System.Collections.Generic;
-    using MyWebServer.Results.Views;
+    using MyWebServer.Server.Results.Views;
     public class ViewClass : IView
     {
         public string ExecuteTemplate(object viewModel, string user)
